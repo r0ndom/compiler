@@ -9,6 +9,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/codemirror.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/pascal.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 </head>
 <body>
 <div class="container">
@@ -26,10 +27,12 @@
     </form>
 </div>
     <script>
-        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-            lineNumbers: true,
-            mode: "text/x-pascal"
-        }).getDoc().setValue("");
+        $(document).ready(function() {
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                lineNumbers: true,
+                mode: "text/x-pascal"
+            }).getDoc().setValue('');
+        });
     </script>
 </body>
 </html>
