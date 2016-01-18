@@ -100,7 +100,7 @@ public class Lexical {
                 if (comment == 0 && charConst == 0) {
                     currWord.append(currChar);
                     if (currChar >= 'A' && currChar <= 'Z' || currChar >= 'a'&& currChar <= 'z' || currChar == '_' || NUMBERS.contains(String.valueOf(currChar))) {
-                        if (i == length - 1 || (i + 1 < length && inputProgram.charAt(i + 1) == ' ' || inputProgram.charAt(i + 1) == '\n' || isSpecialSymbols(String.valueOf(inputProgram.charAt(i + 1))))) {
+                        if (i == length - 1 || (i + 1 < length && inputProgram.charAt(i + 1) == ' ' || inputProgram.charAt(i + 1) == '\n' || inputProgram.charAt(i + 1) == '\r' || isSpecialSymbols(String.valueOf(inputProgram.charAt(i + 1))))) {
                             if (isKeyWord(currWord.toString())) {
                                 table.put(currWord.toString().toUpperCase(), "Ключевое слово " + currWord.toString().toUpperCase());
                                 tokensString.append(currWord.toString().toUpperCase());
