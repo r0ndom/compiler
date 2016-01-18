@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Compiler</title>
@@ -11,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/" method="POST">
+    <form action="<c:url value="/"/>" method="POST">
         <label for="code">Code</label>
         <textarea id="code" name="code">
             ${text}
@@ -28,7 +29,7 @@
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "text/x-pascal"
-        });
+        }).getDoc().setValue("");
     </script>
 </body>
 </html>
