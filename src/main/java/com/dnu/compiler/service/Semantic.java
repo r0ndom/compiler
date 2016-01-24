@@ -294,7 +294,9 @@ public class Semantic {
             String operation = ss1.pop();
             String leftOperand = ss1.pop();
             String typeOfResult = ResultType(operation, leftOperand, rightOperand);
-
+            if (typeOfResult == null) {
+                return;
+            }
             checkType(typeOfResult);
 
             String length;
@@ -348,6 +350,9 @@ public class Semantic {
             String operation = ss1.remove(0);
             String rightOperand = ss1.remove(0);
             String typeOfResult = ResultType(operation, leftOperand, rightOperand);
+            if (typeOfResult == null) {
+                return;
+            }
             String length;
             if (!typeOfResult.equals("NIL"))
                 length = table.get(typeOfResult).split(" \\| ")[1];
