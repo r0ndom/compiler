@@ -537,7 +537,8 @@ public class Semantic {
         String idType = table.get(id).split(" - ")[1].split(" \\| ")[2];
         if (id.length() >= 2 && id.substring(0, 2).equals("#t")) idType = table.get(id).split(" \\| ")[2];
         String valueType = table.get(value).split(" - ")[0];
-        if (value.length() >= 2 && value.substring(0, 2).equals("#t")) valueType = table.get(value).split(" \\| ")[2];
+        if (valueType.equals("ID")) valueType = table.get(id).split(" - ")[1].split(" \\| ")[2];
+        else if (value.length() >= 2 && value.substring(0, 2).equals("#t")) valueType = table.get(value).split(" \\| ")[2];
 
         return ((idType.equals("INTEGER") && (valueType.equals("INT") || valueType.equals("INTEGER"))) || (idType.equals("CHAR") && (valueType.equals("CHR") || valueType.equals("CHAR"))));
     }
