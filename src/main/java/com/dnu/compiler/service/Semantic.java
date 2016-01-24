@@ -20,7 +20,7 @@ public class Semantic {
     public static void FirstPoint(String lexeme) {
         if (table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не уникальное имя константы!");
-            System.exit(1);
+            return;
         }
 
         table.put(lexeme, Lexical.getTable().get(lexeme) + " - AtrConst");
@@ -46,7 +46,7 @@ public class Semantic {
     public static void FourthPoint(String lexeme) {
         if (table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не уникальное имя типа!");
-            System.exit(1);
+            return;
         }
 
         table.put(lexeme, Lexical.getTable().get(lexeme) + " - AtrUserType");
@@ -56,13 +56,13 @@ public class Semantic {
     public static void FifthPoint(String lexeme) {
         if (!table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не определенное имя!");
-            System.exit(3);
+            return;
         }
 
         String attr = table.get(lexeme).split(" - ")[1].split(" \\| ")[0];
         if (!attr.equals("AtrUserType") && !attr.equals("AtrStType")) {
             ResultHandler.append("Семантическая ошибка! Не имеет типа!");
-            System.exit(4);
+            return;
         }
 
         ss1.push(lexeme);
@@ -79,7 +79,7 @@ public class Semantic {
 
         if (bottom > top) {
             ResultHandler.append("Семантическая ошибка! Нижняя граница больше верхней!");
-            System.exit(5);
+            return;
         }
 
         if (!table.containsKey("INTEGER")) {
@@ -105,18 +105,18 @@ public class Semantic {
     public static void EighthPoint(String lexeme) {
         if (!table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не определенное имя!");
-            System.exit(3);
+            return;
         }
 
         String atr = table.get(lexeme).split(" - ")[1].split(" \\| ")[0];
         if (!atr.equals("AtrUserType") && !atr.equals("AtrStType")) {
             ResultHandler.append("Семантическая ошибка! Не имеет типа!");
-            System.exit(4);
+            return;
         }
 
         if (table.get(lexeme).split(" \\| ").length < 4 || table.get(lexeme).split(" - ")[1].split(" \\| ")[3].equals("NIL")) {
             ResultHandler.append("Семантическая ошбика! Тип индекса не пронумерован");
-            System.exit(6);
+            return;
         }
 
         ss1.push(lexeme);
@@ -206,7 +206,7 @@ public class Semantic {
     public static void TwelfthPoint(String lexeme) {
         if (table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не уникальное имя переменной!");
-            System.exit(1);
+            return;
         }
 
         table.put(lexeme, Lexical.getTable().get(lexeme) + " - " + "AtrVar");
@@ -217,7 +217,7 @@ public class Semantic {
     public static void ThirteenthPoint(String lexeme) {
         if (table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не уникальное имя переменной!");
-            System.exit(1);
+            return;
         }
 
         table.put(lexeme, Lexical.getTable().get(lexeme) + " - " + "AtrVar");
@@ -267,18 +267,18 @@ public class Semantic {
     public static void SixteenthPoint(String lexeme, String nextLexeme) {
         if (!table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не определенное имя!");
-            System.exit(3);
+            return;
         }
 
         if (table.get(lexeme).split(" - ")[1].split(" \\| ")[0].equals("AtrConst") && nextLexeme.equals(":=")) {
             ResultHandler.append("Семантическая ошибка! Константе нельзя присваивать значение!");
-            System.exit(10);
+            return;
         }
 
         String atr = table.get(lexeme).split(" - ")[1].split(" \\| ")[0];
         if (!atr.equals("AtrVar") && !atr.equals("AtrConst") || table.get(lexeme).split(" - ").length < 1) {
             ResultHandler.append("Семантическая ошибка! Имя не переменной и не имя константы!");
-            System.exit(16);
+            return;
         }
 
         ss1.push(lexeme);
@@ -323,7 +323,7 @@ public class Semantic {
 
             if (!CheckAssignment(id, value)) {
                 ResultHandler.append("Семантическая ошибка! Несоответсвие типов!");
-                System.exit(7);
+                return;
             }
 
             addGaps();
@@ -332,7 +332,7 @@ public class Semantic {
             table.put(id, table.get(id).split(" \\| ")[0] + " | " + table.get(id).split(" \\| ")[1] + " | " + table.get(id).split(" \\| ")[2] + " | " + value);
         } else {
             ResultHandler.append("Семантическая ошибка! Неверное выражение!");
-            System.exit(6);
+            return;
         }
     }
 
@@ -372,7 +372,7 @@ public class Semantic {
             code.append("IF " + "#t").append(tetradIndex).append(" = false GO #l").append(1 + labelIndex).append("\n");
         } else {
             ResultHandler.append("Семантическая ошибка! Неверное выражение!");
-            System.exit(6);
+            return;
         }
     }
 
@@ -423,17 +423,17 @@ public class Semantic {
     public static void TwentyFifth(String lexeme) {
         if (!table.containsKey(lexeme)) {
             ResultHandler.append("Семантическая ошибка! Не определенное имя!");
-            System.exit(3);
+            return;
         }
 
         if (!table.get(lexeme).split(" - ")[1].split(" \\| ")[0].equals("AtrVar")) {
             ResultHandler.append("Семантическая ошибка! Имя не переменной!");
-            System.exit(16);
+            return;
         }
 
         if (!table.get(lexeme).split(" \\| ")[2].equals("INTEGER")) {
             ResultHandler.append("Семантическая ошибка! Недопустимый тип параметра цикла!");
-            System.exit(14);
+            return;
         }
 
         ++labelIndex;
@@ -447,7 +447,7 @@ public class Semantic {
 
         if (!CheckAssignment(ss4.peek(), initialValue)) {
             ResultHandler.append("Семантическая ошибка! Несоответсвие типов!");
-            System.exit(7);
+            return;
         }
 
         addGaps();
@@ -493,7 +493,6 @@ public class Semantic {
             }
         } else {
             ResultHandler.append("Семантическая ошибка! Неверное выражение!");
-            System.exit(6);
             return null;
         }
     }
@@ -517,7 +516,6 @@ public class Semantic {
                 }
             } else {
                 ResultHandler.append("Семантическая ошибка! Неверное выражение!");
-                System.exit(6);
                 return null;
             }
         } else {
@@ -528,7 +526,7 @@ public class Semantic {
     private static boolean CheckAssignment(String id, String value) {
         if (NUMBERS.contains(id)) {
             ResultHandler.append("Семантическая ошибка! Неверное выражение!");
-            System.exit(6);
+            return false;
         }
 
         String idType = table.get(id).split(" - ")[1].split(" \\| ")[2];

@@ -144,7 +144,7 @@ public class Lexical {
                         if (currChar >= 'А' && currChar <= 'Я' || currChar >= 'а' && currChar <= 'я') {
                             ResultHandler.append("Введен символ кириллицы!");
                             printRestOfInputProgram(inputProgram, i);
-                            System.exit(1);
+                            return;
                         }
 
                         currWord.delete(0, currWord.length());
@@ -156,7 +156,7 @@ public class Lexical {
                 ResultHandler.append(t.getKey() + " - " + t.getValue());
         } else  {
             ResultHandler.append("Вы ввели пустой текст!");
-            System.exit(1);
+            return;
         }
     }
 
