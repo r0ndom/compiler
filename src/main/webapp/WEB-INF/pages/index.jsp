@@ -7,16 +7,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/codemirror.css">
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/codemirror.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/pascal.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 </head>
 <body>
 <div class="container">
     <form action="<c:url value="/"/>" method="POST">
         <label for="code">Code</label>
         <textarea id="code" name="code">
-            ${text}
         </textarea>
 
         <div class="form-group">
