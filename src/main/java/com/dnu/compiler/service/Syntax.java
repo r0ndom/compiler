@@ -10,20 +10,20 @@ public class Syntax {
     private static void Program() {
         String lexeme;
         if (!getLexeme().equals("PROGRAM")) {
-            ResultHandler.append("Ошибка! Ключевое слово PROGRAM отсутствует!");
+            ResultHandler.append("Ошибка! Ключевое слово PROGRAM отсутствует!" + " Программа \n");
             return;
         }
         ResultHandler.defaultAppend(" PROGRAM " + " Программа \n");
 
         lexeme = getLexeme();
         if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-            ResultHandler.append("Ошибка! Идентификатор программы не задан!");
+            ResultHandler.append("Ошибка! Идентификатор программы не задан!" + " Программа \n");
             return;
         }
         ResultHandler.defaultAppend(" " + lexeme + " " + " Программа \n");
 
         if (!getLexeme().equals(";")) {
-            ResultHandler.append("Ошибка! Отсутсвует точка с запятой после идентифакатора программы!");
+            ResultHandler.append("Ошибка! Отсутсвует точка с запятой после идентифакатора программы!" + " Программа \n");
             return;
         }
         ResultHandler.defaultAppend(" ; " + " Программа \n");
@@ -31,7 +31,7 @@ public class Syntax {
         Block();
 
         if (!getLexeme().equals(".")) {
-            ResultHandler.append("Ошибка! Отсутсвует точка после блока программы!");
+            ResultHandler.append("Ошибка! Отсутсвует точка после блока программы!" + " Программа \n");
         }
         ResultHandler.defaultAppend(" . " + " Программа \n");
     }
@@ -52,7 +52,7 @@ public class Syntax {
         ResultHandler.defaultAppend("\n " + getLexeme() + " " + " Определение типа \n");
         TypeDefinition();
         if (!getLexeme().equals(";")) {
-            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения типа!");
+            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения типа!" + " Определение типа \n");
             return;
         }
         ResultHandler.defaultAppend(" ; " + " Определение типа \n");
@@ -61,7 +61,7 @@ public class Syntax {
         while (Lexical.getTable().get(lexeme) != null && Lexical.getTable().get(lexeme).equals("ID")) {
             TypeDefinition();
             if (!getLexeme().equals(";")) {
-                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения типа!");
+                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения типа!" + " Определение типа \n");
                 return;
             }
             ResultHandler.defaultAppend(" ; " + " Определение типа \n");
@@ -74,7 +74,7 @@ public class Syntax {
         ResultHandler.defaultAppend("\n " + getLexeme() + " " + " Определение констант \n");
         ConstDefinition();
         if (!getLexeme().equals(";")) {
-            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения константы!");
+            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения константы!" + " Определение констант \n");
             return;
         }
         ResultHandler.defaultAppend(" ; " + " Определение констант \n");
@@ -84,7 +84,7 @@ public class Syntax {
         while (Lexical.getTable().get(lexeme) != null && Lexical.getTable().get(lexeme).equals("ID")) {
             ConstDefinition();
             if (!getLexeme().equals(";")) {
-                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения константы!");
+                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения константы!" + " Определение констант \n");
                 return;
             }
             ResultHandler.defaultAppend(" ; " + " Определение констант \n");
@@ -98,7 +98,7 @@ public class Syntax {
         ResultHandler.defaultAppend("\n " + getLexeme() + " " + " Определение переменных \n");
         VarDefinition();
         if (!getLexeme().equals(";")) {
-            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения переменной!");
+            ResultHandler.append("Ошибка! Отсутсвует символ ; после определения переменной!" + " Определение переменных \n");
             return;
         }
         ResultHandler.defaultAppend(" ; " + " Определение переменных \n");
@@ -107,7 +107,7 @@ public class Syntax {
         while (Lexical.getTable().get(lexeme) != null && Lexical.getTable().get(lexeme).equals("ID")) {
             VarDefinition();
             if (!getLexeme().equals(";")) {
-                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения переменной!");
+                ResultHandler.append("Ошибка! Отсутсвует символ ; после определения переменной!" + " Определение переменных \n");
                 return;
             }
             ResultHandler.defaultAppend(" ; " + " Определение переменных \n");
@@ -118,7 +118,7 @@ public class Syntax {
     private static void TypeDefinition() {
         String lexeme = getLexeme();
         if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-            ResultHandler.append("Ошибка! Идентификатор типа отсутсвует!");
+            ResultHandler.append("Ошибка! Идентификатор типа отсутсвует!" + " Определение типа \n");
             return;
         }
         ResultHandler.defaultAppend("\n");
@@ -127,7 +127,7 @@ public class Syntax {
         Semantic.FourthPoint(lexeme);
 
         if (!getLexeme().equals("=")) {
-            ResultHandler.append("Ошибка! Символ = после идентификатора типа отсутствует!");
+            ResultHandler.append("Ошибка! Символ = после идентификатора типа отсутствует!" + " Определение типа \n");
             return;
         }
         ResultHandler.defaultAppend(" = " + " Определение типа \n");
@@ -140,7 +140,7 @@ public class Syntax {
     private static void ConstDefinition() {
         String lexeme = getLexeme();
         if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-            ResultHandler.append("Ошибка! Идентификатор константы отсутсвует!");
+            ResultHandler.append("Ошибка! Идентификатор константы отсутсвует!" + " Определение константы \n");
             return;
         }
         ResultHandler.defaultAppend("\n");
@@ -149,7 +149,7 @@ public class Syntax {
         Semantic.FirstPoint(lexeme);
 
         if (!getLexeme().equals("=")) {
-            ResultHandler.append("Ошибка! Символ = после идентификатора константы отсутствует!");
+            ResultHandler.append("Ошибка! Символ = после идентификатора константы отсутствует!" + " Определение константы \n");
             return;
         }
         ResultHandler.defaultAppend(" = " + " Определение константы \n");
@@ -163,7 +163,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Константа \n");
             Semantic.ThirdPoint(lexeme);
         } else {
-            ResultHandler.append("Ошибка! Указано неверное значение константы!");
+            ResultHandler.append("Ошибка! Указано неверное значение константы!" + " Константа \n");
             return;
         }
     }
@@ -172,7 +172,7 @@ public class Syntax {
         ListOfId();
 
         if (!getLexeme().equals(":")) {
-            ResultHandler.append("Ошибка! Отсутсвует символ : после объявления переменных!");
+            ResultHandler.append("Ошибка! Отсутсвует символ : после объявления переменных!" + " Определение переменной \n");
             return;
         }
         ResultHandler.defaultAppend(" : " + " Определение переменной \n");
@@ -184,7 +184,7 @@ public class Syntax {
 
     private static void CompositeAction() {
         if (!getLexeme().equals("BEGIN")) {
-            ResultHandler.append("Ошибка! Отсутсвует ключевое слово BEGIN!");
+            ResultHandler.append("Ошибка! Отсутсвует ключевое слово BEGIN!" + " Составное действие \n");
             return;
         }
         ResultHandler.defaultAppend("\n");
@@ -196,7 +196,7 @@ public class Syntax {
         SequenceOfActions();
 
         if (!getLexeme().equals("END")) {
-            ResultHandler.append("Ошибка! Отсутсвует ключевое слово END!");
+            ResultHandler.append("Ошибка! Отсутсвует ключевое слово END!" + " Составное действие \n");
             return;
         }
         depth -= 4;
@@ -234,7 +234,7 @@ public class Syntax {
         Var();
 
         if (!getLexeme().equals(":=")) {
-            ResultHandler.append("Ошибка! Не указан оператор присваиния после имени переменной!");
+            ResultHandler.append("Ошибка! Не указан оператор присваиния после имени переменной!" + " Действие присваивания \n");
             return;
         }
         ResultHandler.defaultAppend(" := " + " Действие присваивания \n");
@@ -256,7 +256,7 @@ public class Syntax {
             Semantic.TwentyFirst();
 
             if (!getLexeme().equals("THEN")) {
-                ResultHandler.append("Ошибка! Отсутсвует оператор THEN после логического выражения!");
+                ResultHandler.append("Ошибка! Отсутсвует оператор THEN после логического выражения!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" THEN " + "Сложное действие \n");
@@ -282,7 +282,7 @@ public class Syntax {
             Semantic.TwentyFirst();
 
             if (!getLexeme().equals("DO")) {
-                ResultHandler.append("Ошибка! Отсутсвует оператор DO после условия цикла WHILE!");
+                ResultHandler.append("Ошибка! Отсутсвует оператор DO после условия цикла WHILE!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" DO " + "Сложное действие \n");
@@ -295,14 +295,14 @@ public class Syntax {
 
             lexeme = getLexeme();
             if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-                ResultHandler.append("Ошибка! Отсутсвует переменная-счётчик для цикла FOR!");
+                ResultHandler.append("Ошибка! Отсутсвует переменная-счётчик для цикла FOR!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" " + lexeme + " " + "Сложное действие \n");
             Semantic.TwentyFifth(lexeme);
 
             if (!getLexeme().equals(":=")) {
-                ResultHandler.append("Ошибка! Отсутсвует оператор присваивания после переменной-счётчики цикла FOR!");
+                ResultHandler.append("Ошибка! Отсутсвует оператор присваивания после переменной-счётчики цикла FOR!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" := " + "Сложное действие \n");
@@ -311,7 +311,7 @@ public class Syntax {
             Semantic.TwentySixth();
 
             if (!getLexeme().equals("TO")) {
-                ResultHandler.append("Ошибка! Отсутсвует оператор TO после переменной-счётчика цикла FOR!");
+                ResultHandler.append("Ошибка! Отсутсвует оператор TO после переменной-счётчика цикла FOR!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" TO " + "Сложное действие \n");
@@ -320,7 +320,7 @@ public class Syntax {
             Semantic.TwentySeventh();
 
             if (!getLexeme().equals("DO")) {
-                ResultHandler.append("Ошибка! Отсутсвует оператор DO после выражения цикла FOR!");
+                ResultHandler.append("Ошибка! Отсутсвует оператор DO после выражения цикла FOR!" + "Сложное действие \n");
                 return;
             }
             ResultHandler.defaultAppend(" DO " + "Сложное действие \n");
@@ -335,7 +335,7 @@ public class Syntax {
         if (lexeme.equals("ARRAY")) {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Тип \n");
             if (!getLexeme().equals("[")) {
-                ResultHandler.append("Ошибка! Отсутсвует символ [ после ключевого слова ARRAY!");
+                ResultHandler.append("Ошибка! Отсутсвует символ [ после ключевого слова ARRAY!" + " Тип \n");
                 return;
             }
             ResultHandler.defaultAppend(" [ " + " Тип \n");
@@ -343,13 +343,13 @@ public class Syntax {
             RangeOfIndex();
 
             if (!getLexeme().equals("]")) {
-                ResultHandler.append("Ошибка! Отсутствует сивол ] в указании диапазона массива!");
+                ResultHandler.append("Ошибка! Отсутствует сивол ] в указании диапазона массива!" + " Тип \n");
                 return;
             }
             ResultHandler.defaultAppend(" ] " + " Тип \n");
 
             if (!getLexeme().equals("OF")) {
-                ResultHandler.append("Ошибка! Отсутсвует слово OF после указания диапазона массива!");
+                ResultHandler.append("Ошибка! Отсутсвует слово OF после указания диапазона массива!" + " Тип \n");
                 return;
             }
             ResultHandler.defaultAppend(" OF " + " Тип \n");
@@ -361,14 +361,14 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Тип \n");
             Semantic.SixthPoint(lexeme);
             if (!getLexeme().equals("..")) {
-                ResultHandler.append("Ошибка! Не указан символ .. в указании типа!");
+                ResultHandler.append("Ошибка! Не указан символ .. в указании типа!" + " Тип \n");
                 return;
             }
             ResultHandler.defaultAppend(" .. " + " Тип \n");
 
             lexeme = getLexeme();
             if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("INT")) {
-                ResultHandler.append("Ошибка! Не указан диапазон в объявлении типа!");
+                ResultHandler.append("Ошибка! Не указан диапазон в объявлении типа!" + " Тип \n");
                 return;
             }
             ResultHandler.defaultAppend(" " + lexeme + " " + " Тип \n");
@@ -379,7 +379,7 @@ public class Syntax {
                 Semantic.FifthPoint(lexeme);
             }
         } else {
-            ResultHandler.append("Ошибка! Ошибка в указании типа переменной!");
+            ResultHandler.append("Ошибка! Ошибка в указании типа переменной!" + " Тип \n");
             return;
         }
     }
@@ -390,14 +390,14 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Диапазон индекса \n");
             Semantic.SixthPoint(lexeme);
             if (!getLexeme().equals("..")) {
-                ResultHandler.append("Ошибка! Не указан символ .. в указании диапазона типа!");
+                ResultHandler.append("Ошибка! Не указан символ .. в указании диапазона типа!" + " Диапазон индекса \n");
                 return;
             }
             ResultHandler.defaultAppend(" .. " + " Диапазон индекса \n");
 
             lexeme = getLexeme();
             if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("INT")) {
-                ResultHandler.append("Ошибка! Не указан диапазон в объявлении типа!");
+                ResultHandler.append("Ошибка! Не указан диапазон в объявлении типа!" + " Диапазон индекса \n");
                 return;
             }
             ResultHandler.defaultAppend(" " + lexeme + " " + " Диапазон индекса \n");
@@ -406,7 +406,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Диапазон индекса \n");
             Semantic.EighthPoint(lexeme);
         } else {
-            ResultHandler.append("Ошибка! Ошибка в объявлении диапазона индекса!");
+            ResultHandler.append("Ошибка! Ошибка в объявлении диапазона индекса!" + " Диапазон индекса \n");
             return;
         }
     }
@@ -427,7 +427,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Знак отношения \n");
             Semantic.SeventeenthPoint(lexeme);
         } else {
-            ResultHandler.append("Ошибка! Указан неверный знак отношения!");
+            ResultHandler.append("Ошибка! Указан неверный знак отношения!" + " Знак отношения \n");
             return;
         }
     }
@@ -450,7 +450,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Аддитивная операция \n");
             Semantic.SeventeenthPoint(lexeme);
         } else {
-            ResultHandler.append("Ошибка! Указана неверная аддитивная операция!");
+            ResultHandler.append("Ошибка! Указана неверная аддитивная операция!" + " Аддитивная операция \n");
             return;
         }
     }
@@ -473,7 +473,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Мультипликативная операция \n");
             Semantic.SeventeenthPoint(lexeme);
         } else {
-            ResultHandler.append("Ошибка! Указана неверная мультипликативная операция!");
+            ResultHandler.append("Ошибка! Указана неверная мультипликативная операция!" + " Мультипликативная операция \n");
             return;
         }
     }
@@ -494,12 +494,12 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Множитель \n");
             Expression();
             if (!getLexeme().equals(")")) {
-                ResultHandler.append("Ошибка! Нет закрывающей скобки ) после выражения!");
+                ResultHandler.append("Ошибка! Нет закрывающей скобки ) после выражения!" + " Множитель \n");
                 return;
             }
             ResultHandler.defaultAppend(" ) " + " Множитель \n");
         } else {
-            ResultHandler.append("Ошибка! Неверный множитель!");
+            ResultHandler.append("Ошибка! Неверный множитель!" + " Множитель \n");
             return;
         }
     }
@@ -507,7 +507,7 @@ public class Syntax {
     private static void Var() {
         String lexeme = getLexeme();
         if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-            ResultHandler.append("Ошибка! Отсутсвует идентификатор переменной!");
+            ResultHandler.append("Ошибка! Отсутсвует идентификатор переменной!"  + " Переменная \n");
             return;
         }
         ResultHandler.defaultAppend(" " + lexeme + " " + " Переменная \n");
@@ -521,7 +521,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Выбор компоненты \n");
             Expression();
             if (!getLexeme().equals("]")) {
-                ResultHandler.append("Ошибка! Отсутсвует символ ]!");
+                ResultHandler.append("Ошибка! Отсутсвует символ ]!" + " Выбор компоненты \n");
                 return;
             }
             ResultHandler.defaultAppend(" ] " + " Выбор компоненты \n");
@@ -533,7 +533,7 @@ public class Syntax {
     private static void ListOfId() {
         String lexeme = getLexeme();
         if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-            ResultHandler.append("Ошибка! Не указано имя переменной!");
+            ResultHandler.append("Ошибка! Не указано имя переменной!" + " Список идентификаторов \n");
             return;
         }
         ResultHandler.defaultAppend("\n");
@@ -546,7 +546,7 @@ public class Syntax {
             ResultHandler.defaultAppend(" " + getLexeme() + " " + " Список идентификаторов \n");
             lexeme = getLexeme();
             if (Lexical.getTable().get(lexeme) != null && !Lexical.getTable().get(lexeme).equals("ID")) {
-                ResultHandler.append("Ошибка! Не указано имя переменной после запятой!");
+                ResultHandler.append("Ошибка! Не указано имя переменной после запятой!" + " Список идентификаторов \n");
                 return;
             }
             ResultHandler.defaultAppend(" " + lexeme + " " + " Список идентификаторов \n");
